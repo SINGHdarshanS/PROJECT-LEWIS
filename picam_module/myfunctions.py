@@ -33,6 +33,7 @@ def send(filename):
 #            os.remove(f)
 #        break
     s.close()
+    os.remove(filename)
     print("Transmission Complete")
     return 0
 
