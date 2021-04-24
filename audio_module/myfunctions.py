@@ -49,4 +49,4 @@ def listen(prompt=""):
   r = sr.Recognizer()
   with sr.Microphone() as source:
     r.pause_threshold = 1
-  return  r.listen(source, phrase_time_limit=8)
+  return  r.listen(source, phrase_time_limit=8).get_wav_data()
