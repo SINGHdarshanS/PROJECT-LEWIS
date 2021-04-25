@@ -11,8 +11,8 @@ def signal_handler(sig, frame):
     s.shutdown(2)
     s.close()
     sys.exit('Socket connection terminated')
-def receive_video():
-    PATH = "/home/darshy/PROJECT-LEWIS/base_station/footage/"
+def receive_video(PATH=""):
+    # PATH = "/home/darshy/PROJECT-LEWIS/base_station/footage/"
 
     signal.signal(signal.SIGINT, signal_handler)
     SERVER_HOST = "192.168.8.240"
