@@ -11,7 +11,7 @@ def send(file):
   BUFFER_SIZE = 4096
   host = "192.168.8.240"
   port = 8001
-  PATH = "/home/pi/PROJECT-LEWIS/"
+  PATH = "/home/pi/PROJECT-LEWIS/audio_module/"
   filename = file
   filesize = os.path.getsize(PATH+filename)
   
