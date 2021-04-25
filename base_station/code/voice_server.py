@@ -11,8 +11,7 @@ def signal_handler(sig, frame):
 #    s.close()
     sys.exit('Socket connection terminated')
 
-def receive_speech():
-    PATH = ''
+def receive_speech(PATH = ''):
 
     signal.signal(signal.SIGINT, signal_handler)
 
