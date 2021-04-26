@@ -1,4 +1,4 @@
-from socket import socket
+from socket import socket, AF_INET, SOCK_DGRAM
 import os
 import signal
 import sys
@@ -46,4 +46,9 @@ def receive_speech(PATH = ''):
         print('transfer complete')
     return PATH+'speech.wav'
 
-receive_speech()
+def send_message(message):
+    addr = "192.168.8.x"
+    s = socket(AF_INET, SOCK_DGRAM)
+    print("Sending following message to {}:\n\n\t\'{}\'".format(addr, message))
+    s.sendto(message, addr)
+    
