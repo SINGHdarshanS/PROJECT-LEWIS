@@ -37,6 +37,13 @@ def send(file):
   
   return 0
 
+def receive():
+  s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+  s.bind(('192.168.8.x', 8002))
+  data, addr = s.recvfrom(1024)
+  print('\nReceived:\t{}\nFrom:\t\t{}\n\n'.format(data, addr[0]))
+  return data
+
 def speak(text=""):
   engine = pyttsx3.init()
   engine.say(text)
