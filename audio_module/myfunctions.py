@@ -50,7 +50,7 @@ def speak(text=""):
   engine.runAndWait()
   return 0
 
-def listen(prompt=""):
+def listen(text=""):
   if(text!=""):
     speak(text=prompt)
   r = sr.Recognizer()
