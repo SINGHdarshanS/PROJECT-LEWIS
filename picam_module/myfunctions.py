@@ -51,7 +51,7 @@ def cam_setup(camera):
 
 def record(camera, PATH="/home/pi/capstone/footage/", filehead="test1"):
     location = PATH+filehead+'.h264'
-    print("here")
+    # print("here")
     # camera = PiCamera()
     camera.start_recording(location)
     sleep(2)

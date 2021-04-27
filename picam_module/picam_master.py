@@ -12,9 +12,16 @@ import subprocess
 with PiCamera() as camera:
     mf.cam_setup(camera)
     while True:
+        print("recording video")
         fname = mf.record(camera)
+        print("recording complete")
 
         # subprocess.check_output("MP4Box -add {} {}".format(fname, "to_send.mp4"), stderr=subprocess.STDOUT, shell=True)
-        print("processing done")
+        # print("processing done")
 
-        mf.send(fname)
+        try:
+            mf.send(fname)
+            print("file sent")
+        except:
+            print("No receiver detected")
+            continue
