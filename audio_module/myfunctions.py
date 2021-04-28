@@ -37,23 +37,25 @@ def send(file):
   
   return 0
 
-def receive():
+def receive(port=7998):
   s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-  s.bind(('192.168.8.x', 8002))
+  s.bind(('192.168.8.132', port))
   data, addr = s.recvfrom(1024)
-  print('\nReceived:\t{}\nFrom:\t\t{}\n\n'.format(data, addr[0]))
-  return data
+  print('\nReceived:\t{}\nFrom:\t\t{}\n\n'.format(data.decode(), addr[0]))
+  s.close()
+  return data.decode()
 
-def speak(text=""):
+def speak(say=""):
   engine = pyttsx3.init()
-  engine.say(text)
+  engine.say(say)
   engine.runAndWait()
+  print(say)
   return 0
 
-def listen(text=""):
-  if(text!=""):
-    speak(text=prompt)
+def listen(text="empty"):
+  if(text!="empty"):
+    speak(say=text)
   r = sr.Recognizer()
   with sr.Microphone() as source:
     r.pause_threshold = 1
-  return  r.listen(source, phrase_time_limit=8).get_wav_data()
+    return  r.listen(source, phrase_time_limit=8).get_wav_data()
