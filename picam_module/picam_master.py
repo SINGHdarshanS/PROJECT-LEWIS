@@ -4,7 +4,6 @@ import os
 from glob import glob
 from picamera import PiCamera
 from time import sleep
-
 import myfunctions as mf
 import subprocess
 
@@ -19,8 +18,10 @@ with PiCamera() as camera:
         # subprocess.check_output("MP4Box -add {} {}".format(fname, "to_send.mp4"), stderr=subprocess.STDOUT, shell=True)
         # print("processing done")
 
+        #subprocess.run("MP4Box -add )
         try:
-            mf.send(fname)
+            mf.send("video.h264")
+            os.remove("video.h264")
             print("file sent")
         except:
             print("No receiver detected")

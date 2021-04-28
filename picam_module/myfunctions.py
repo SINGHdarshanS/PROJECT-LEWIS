@@ -2,7 +2,7 @@ import socket
 import tqdm
 import os
 from glob import glob
-
+import subprocess
 from picamera import PiCamera
 from time import sleep
 
@@ -21,11 +21,12 @@ def send(filename):
 
     s.send('{}{}{}'.format(filename, SEPARATOR, filesize).encode())
     with open(filename, "rb") as f:
-        while True:
-            bytes_read = f.read(BUFFER_SIZE)
-            if not bytes_read:
-                break
-            s.sendall(bytes_read)
+        s.sendfile(f)
+        #while True:
+        #    bytes_read = f.read(BUFFER_SIZE)
+        #    if not bytes_read:
+        #        break
+        #    s.sendall(bytes_read)
 #    # uncomment if latency+RTT+processing time exceeds one second to prevent file buildup
 #        print('Got here')
 #        files = glob.glob(PATH + '*.mp4')
@@ -53,7 +54,9 @@ def record(camera, PATH="/home/pi/capstone/footage/", filehead="test1"):
     location = PATH+filehead+'.h264'
     # print("here")
     # camera = PiCamera()
-    camera.start_recording(location)
+    camera.start_recording("video.h264")
     sleep(2)
     camera.stop_recording()
+    #os.system("raspivid -t 2000 -w 1920 -h 1080 -fps 25 -o video.h264")
+    
     return location
